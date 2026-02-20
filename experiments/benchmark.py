@@ -3,57 +3,78 @@ import time
 import pandas as pd
 import os
 
-
-from algorithms.bubble_sort import bubble_sort
-from algorithms.insertion_sort import insertion_sort
-from algorithms.selection_sort import selection_sort
-from algorithms.merge_sort import merge_sort
-from algorithms.quick_sort import quick_sort
+from algorithms.linear_search import linear_search
+from algorithms.binary_search import binary_search
+from algorithms.jump_search import jump_search
+from algorithms.interpolation_search import interpolation_search
+from algorithms.exponential_search import exponential_search
 
 
 # Input sizes to test
-SIZES = [100, 500, 1000, 2000, 5000]
+SIZES = [100, 500, 800]
 
-# Number of repetitions for averaging
+# Number of repetitions
 REPETITIONS = 5
 
+# Types of cases for searching
+CASES = ["Best", "Average", "Worst"]
 
-def measure_time(algorithm, data):
-    """
-    Measures execution time of a sorting algorithm.
-    """
+
+def measure_time(algorithm, data, target):
     start = time.perf_counter()
-    algorithm(data)
+    algorithm(data, target)
     end = time.perf_counter()
     return end - start
+
+
+def generate_data(size):
+    """
+    Generates a sorted array for search algorithms.
+    """
+    return sorted(random.sample(range(size * 3), size))
+
+
+def select_target(data, case_type):
+    """
+    Selects target depending on case type.
+    """
+    if case_type == "Best":
+        return data[0]  # First element
+
+    elif case_type == "Worst":
+        return data[-1]  # Last element
+
+    else:  # Average
+        return data[len(data) // 2]
 
 
 def run_benchmark():
     results = []
 
+    algorithms = {
+        "Linear Search": linear_search,
+        "Binary Search": binary_search,
+        "Jump Search": jump_search,
+        "Interpolation Search": interpolation_search,
+        "Exponential Search": exponential_search
+    }
+
     for size in SIZES:
-        for _ in range(REPETITIONS):
+        for case in CASES:
+            for _ in range(REPETITIONS):
 
-            # Generate the same random data for all algorithms
-            base_data = [random.randint(0, 10000) for _ in range(size)]
+                base_data = generate_data(size)
+                target = select_target(base_data, case)
 
-            algorithms = {
-                "Bubble Sort": bubble_sort,
-                "Insertion Sort": insertion_sort,
-                "Selection Sort": selection_sort,
-                "Merge Sort": merge_sort,
-                "Quick Sort": quick_sort
-            }
+                for name, algorithm in algorithms.items():
+                    elapsed_time = measure_time(algorithm, base_data, target)
 
-            for name, algorithm in algorithms.items():
-                data_copy = base_data.copy()
-                elapsed_time = measure_time(algorithm, data_copy)
-
-                results.append({
-                    "Algorithm": name,
-                    "Input Size": size,
-                    "Time (seconds)": elapsed_time
-                })
+                    results.append({
+                        "Algorithm": name,
+                        "Input Size": size,
+                        "Case": case,
+                        "Time (seconds)": elapsed_time
+                    })
 
     return pd.DataFrame(results)
 
