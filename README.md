@@ -128,13 +128,13 @@ pip install -r requirements.txt
 From the project root:
 
 ```bash
-python -m experiments.search_benchmark
+python -m experiments.benchmark
 ```
 
 This generates:
 
 ```
-search_benchmark_results.csv
+benchmark_results.csv
 ```
 
 ---
@@ -144,7 +144,7 @@ search_benchmark_results.csv
 Launch Jupyter:
 
 ```bash
-jupyter notebook notebook/search_experimental_analysis.ipynb
+jupyter notebook notebook/experimental_analysis.ipynb
 ```
 
 ---
@@ -160,11 +160,11 @@ jupyter notebook notebook/search_experimental_analysis.ipynb
 │   └── exponential_search.py
 │
 ├── experiments/
-│   ├── search_benchmark.py
-│   └── search_benchmark_results.csv
+│   ├── benchmark.py
+│   └── benchmark_results.csv
 │
 ├── notebook/
-│   └── search_experimental_analysis.ipynb
+│   └── experimental_analysis.ipynb
 │
 ├── tests/
 │
