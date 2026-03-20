@@ -1,117 +1,104 @@
-# 🔎 Searching Algorithms — Empirical Complexity Analysis  
+# Searching Algorithms - Empirical Complexity Analysis
 
-[![Python](https://img.shields.io/badge/Python-3.11-blue.svg?style=for-the-badge&logo=python)]  
-[![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas)]  
-[![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange?style=for-the-badge)]  
-[![Seaborn](https://img.shields.io/badge/Seaborn-Statistical%20Plots-green?style=for-the-badge)]  
-[![License](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)]  
-
----
-
-## 📌 Project Overview  
-
-This project presents an empirical performance evaluation of five classical **searching algorithms**:
-
-- Linear Search  
-- Binary Search  
-- Jump Search  
-- Interpolation Search  
-- Exponential Search  
-
-The objective is to experimentally validate their theoretical time complexity under:
-
-- **Best Case**
-- **Average Case**
-- **Worst Case**
-
-The study combines benchmarking, statistical aggregation, visualization, ranking, and scalability analysis to evaluate real-world performance and compare it against asymptotic theory.
+[![Python](https://img.shields.io/badge/Python-3.11-blue.svg?style=for-the-badge&logo=python)]
+[![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-150458?style=for-the-badge&logo=pandas)]
+[![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange?style=for-the-badge)]
+[![Seaborn](https://img.shields.io/badge/Seaborn-Statistical%20Plots-green?style=for-the-badge)]
+[![License](https://img.shields.io/badge/License-MIT-black?style=for-the-badge)]
 
 ---
 
-## 🧠 Theoretical Complexity Comparison  
+## Project Overview
 
-| Algorithm              | Best Case | Average Case | Worst Case |
-|------------------------|-----------|--------------|------------|
-| Linear Search          | O(1)      | O(n)         | O(n)       |
-| Binary Search          | O(1)      | O(log n)     | O(log n)   |
-| Jump Search            | O(1)      | O(√n)        | O(√n)      |
-| Interpolation Search   | O(1)      | O(log log n)*| O(n)       |
-| Exponential Search     | O(1)      | O(log n)     | O(log n)   |
+This project presents an empirical performance evaluation of four classical searching algorithms:
 
-\*Interpolation Search assumes uniformly distributed data.
+- Binary Search
+- Jump Search
+- Interpolation Search
+- Exponential Search
 
----
+The objective is to experimentally compare their behavior under:
 
-## 🏗 Analysis Workflow  
+- Best Case
+- Average Case
+- Worst Case
 
-Algorithm Implementation  
-↓  
-Sorted Input Generation  
-↓  
-Target Selection (Best / Average / Worst)  
-↓  
-Benchmark Execution  
-↓  
-Execution Time Measurement (`time.perf_counter()`)  
-↓  
-Statistical Aggregation  
-↓  
-Visualization & Ranking  
-↓  
-Scalability Interpretation  
+All algorithms are evaluated on previously sorted input arrays so the benchmark measures search performance directly.
 
 ---
 
-## 🧩 Core Components  
+## Theoretical Complexity Comparison
 
-### 1️⃣ Algorithm Implementation  
+| Algorithm            | Best Case | Average Case | Worst Case |
+|----------------------|-----------|--------------|------------|
+| Binary Search        | O(1)      | O(log n)     | O(log n)   |
+| Jump Search          | O(1)      | O(sqrt(n))   | O(sqrt(n)) |
+| Interpolation Search | O(1)      | O(log log n)*| O(n)       |
+| Exponential Search   | O(1)      | O(log n)     | O(log n)   |
 
-All searching algorithms are implemented from scratch in Python.
-
-> ⚠ Note:  
-> Binary, Jump, Interpolation, and Exponential Search require **sorted input arrays**.
+\* Interpolation Search assumes uniformly distributed data.
 
 ---
 
-### 2️⃣ Benchmarking System  
+## Analysis Workflow
+
+Algorithm Implementation
+-> Sorted Input Generation
+-> Target Selection (Best / Average / Worst)
+-> Benchmark Execution
+-> Execution Time Measurement (`time.perf_counter()`)
+-> Statistical Aggregation
+-> Visualization and Ranking
+-> Scalability Interpretation
+
+---
+
+## Core Components
+
+### 1. Algorithm Implementation
+
+All searching algorithms are implemented from scratch in Python:
+
+- `binary_search.py`
+- `jump_search.py`
+- `interpolation_search.py`
+- `exponential_search.py`
+
+### 2. Benchmarking System
 
 The benchmark module:
 
-- Generates controlled input sizes
+- Generates sorted input sizes from `1000` to `10000`
 - Creates three search scenarios:
-  - **Best Case** → target at first position
-  - **Average Case** → target at random position
-  - **Worst Case** → target at last position or not present
+  - Best Case -> target at the first position
+  - Average Case -> target in the middle position
+  - Worst Case -> target at the last position
 - Repeats executions for averaging
 - Measures time using `time.perf_counter()`
 - Exports results to CSV for analysis
 
----
-
-### 3️⃣ Experimental Analysis  
+### 3. Experimental Analysis
 
 The Jupyter Notebook performs:
 
-- Mean execution time computation  
-- Case comparison visualization  
-- Worst-case degradation analysis  
-- Algorithm ranking  
-- Growth rate analysis  
-- Percentage scalability comparison  
-- Empirical validation of asymptotic complexity  
+- Mean execution time computation
+- Case comparison visualization
+- Worst-case analysis
+- Algorithm ranking
+- Growth rate analysis
+- Percentage growth comparison
+- Empirical validation of search complexity
 
 ---
 
-## 🚀 Getting Started  
+## Getting Started
 
-### 📦 Prerequisites  
+### Prerequisites
 
-- Python 3.11  
-- pip  
+- Python 3.11
+- pip
 
----
-
-## ⚙️ Installation  
+## Installation
 
 ```bash
 git clone https://github.com/your-username/searching-algorithms-analysis.git
@@ -123,7 +110,7 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Running the Benchmark  
+## Running the Benchmark
 
 From the project root:
 
@@ -133,15 +120,15 @@ python -m experiments.benchmark
 
 This generates:
 
-```
-benchmark_results.csv
+```text
+experiments/benchmark_results.csv
 ```
 
 ---
 
-## ▶️ Running the Analysis  
+## Running the Analysis
 
-Launch Jupyter:
+Open the notebook:
 
 ```bash
 jupyter notebook notebook/experimental_analysis.ipynb
@@ -149,54 +136,58 @@ jupyter notebook notebook/experimental_analysis.ipynb
 
 ---
 
-## 📁 Project Structure  
+## Project Structure
 
+```text
+algorithms/
+|-- __init__.py
+|-- binary_search.py
+|-- jump_search.py
+|-- interpolation_search.py
+`-- exponential_search.py
+
+experiments/
+|-- benchmark.py
+`-- benchmark_results.csv
+
+notebook/
+`-- experimental_analysis.ipynb
+
+tests/
+|-- __init__.py
+|-- binary_search_test.py
+|-- jump_search_test.py
+|-- interpolation_search_test.py
+|-- exponential_search_test.py
+`-- linear_search_test.py
+
+README.md
 ```
-├── algorithms/
-│   ├── linear_search.py
-│   ├── binary_search.py
-│   ├── jump_search.py
-│   ├── interpolation_search.py
-│   └── exponential_search.py
-│
-├── experiments/
-│   ├── benchmark.py
-│   └── benchmark_results.csv
-│
-├── notebook/
-│   └── experimental_analysis.ipynb
-│
-├── tests/
-│
-├── requirements.txt
-└── README.md
-```
 
 ---
 
-## 📈 Key Experimental Findings  
+## Key Experimental Findings
 
-- **Linear Search** exhibits linear growth O(n) and becomes inefficient for large datasets.
-- **Jump Search** reduces complexity to O(√n) but remains slower than logarithmic approaches.
-- **Binary Search** and **Exponential Search** demonstrate highly scalable O(log n) behavior.
-- **Interpolation Search** can outperform others under uniform distribution but may degrade otherwise.
-- Empirical results strongly align with theoretical time complexity.
-
----
-
-## 🎓 Academic Context  
-
-Developed as part of an **Algorithm Analysis** course to validate theoretical time complexity through controlled experimental benchmarking and visualization.
+- Binary Search shows the best overall average performance in the benchmark.
+- Exponential Search remains efficient, although it is usually slightly slower than Binary Search.
+- Interpolation Search can be highly competitive when the data distribution is favorable.
+- Jump Search grows faster than the logarithmic alternatives as input size increases.
 
 ---
 
-## 📜 License  
+## Academic Context
+
+Developed as part of an Algorithm Analysis course to validate theoretical behavior through controlled experimental benchmarking and visualization.
+
+---
+
+## License
 
 This project is licensed under the MIT License.
 
 ---
 
-## 👨‍💻 Authors  
+## Authors
 
-[![GitHub](https://img.shields.io/badge/GitHub-JeissonS02-181717?style=for-the-badge&logo=github)](https://github.com/JeissonS02)  
-[![GitHub](https://img.shields.io/badge/GitHub-SebastianAlbarracinSilva-181717?style=for-the-badge&logo=github)](https://github.com/SebastianAlbarracinSilva)  
+[![GitHub](https://img.shields.io/badge/GitHub-JeissonS02-181717?style=for-the-badge&logo=github)](https://github.com/JeissonS02)
+[![GitHub](https://img.shields.io/badge/GitHub-SebastianAlbarracinSilva-181717?style=for-the-badge&logo=github)](https://github.com/SebastianAlbarracinSilva)

@@ -11,6 +11,9 @@ def exponential_search(arr, target):
         O(log n)
     """
 
+    if not arr:
+        return -1
+
     if arr[0] == target:
         return 0
 
@@ -20,4 +23,9 @@ def exponential_search(arr, target):
     while i < n and arr[i] <= target:
         i *= 2
 
-    return binary_search(arr[:min(i, n)], target)
+    left = i // 2
+    right = min(i, n)
+    result = binary_search(arr[left:right], target)
+    if result == -1:
+        return -1
+    return left + result

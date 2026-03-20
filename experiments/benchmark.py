@@ -3,7 +3,6 @@ import time
 import pandas as pd
 import os
 
-from algorithms.linear_search import linear_search
 from algorithms.binary_search import binary_search
 from algorithms.jump_search import jump_search
 from algorithms.interpolation_search import interpolation_search
@@ -11,7 +10,7 @@ from algorithms.exponential_search import exponential_search
 
 
 # Input sizes to test
-SIZES = [100, 500, 800]
+SIZES = list(range(1000, 10001, 1000))
 
 # Number of repetitions
 REPETITIONS = 5
@@ -52,7 +51,6 @@ def run_benchmark():
     results = []
 
     algorithms = {
-        "Linear Search": linear_search,
         "Binary Search": binary_search,
         "Jump Search": jump_search,
         "Interpolation Search": interpolation_search,

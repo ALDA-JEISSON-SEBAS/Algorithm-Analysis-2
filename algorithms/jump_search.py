@@ -15,6 +15,9 @@ def jump_search(arr, target):
     """
 
     n = len(arr)
+    if n == 0:
+        return -1
+
     step = int(math.sqrt(n))
     prev = 0
 
